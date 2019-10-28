@@ -38,7 +38,7 @@
                         </div>
                    <div class="form-group">
                             <label>Deskripsi</label> 
-                         <textarea id="textarea1" class="form-control" name="deskripsi_barang">{{ $barang->deskripsi_barang }}</textarea>
+                         <textarea id="content" class="form-control" name="deskripsi_barang">{{ $barang->deskripsi_barang }}</textarea>
                      </div>
                      <div class="form-group">
                             <label>Upload</label> 
@@ -85,4 +85,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content').summernote({
+      height: "300px",
+      styleWithSpan: false
+    });
+  }); 
+</script>
 @endsection

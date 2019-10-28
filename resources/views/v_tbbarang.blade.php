@@ -66,7 +66,7 @@
                   { data: 'kd_barang', name: 'kd_barang' },
                   { data: 'nm_barang', name: 'nm_barang' },
                   { data: 'nm_kategori', name: 'nm_kategori' },
-                  { data: 'deskripsi_barang', name: 'deskripsi_barang' },
+                   {data: 'action', name: 'upload', orderable: false, searchable: false},
                   { data: 'harga_barang', render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' ) },
                     
                   { data: 'upload_barang',

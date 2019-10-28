@@ -26,7 +26,7 @@
 				<td style="vertical-align:middle;text-align:center;">{{$p->kd_barang}}</td>
 				<td style="vertical-align:middle;text-align:center;">{{$p->nm_barang}}</td>
 				<td style="vertical-align:middle;text-align:center;">{{$p->nm_kategori}}</td>
-				<td style="vertical-align:middle;text-align:center;">{{$p->deskripsi_barang}}</td>
+				<td style="vertical-align:middle;">{!! $p->deskripsi_barang !!}</td>
                 <td style="vertical-align:middle;text-align:right;">Rp. {{ number_format($p->harga_barang)}},-</td>
             </tr>
 			@endforeach

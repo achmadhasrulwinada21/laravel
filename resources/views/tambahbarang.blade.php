@@ -28,7 +28,7 @@
         @endif
         <br/>
         <label>Dekripsi</label> <br>
-		<textarea name="deskripsi_barang" class="form-control"></textarea>
+		<textarea name="deskripsi_barang" class="form-control" id="content"></textarea>
 		 @if($errors->has('deskripsi_barang'))
             <div class="text-danger">
              {{ $errors->first('deskripsi_barang')}}
@@ -36,7 +36,7 @@
         @endif
 		<br/>
         <label>Upload</label><br>
-		<input type="file" name="upload_barang" class="form-control">
+		<input type="file" name="upload_barang" class="form-control" accept="image/*">
         <br/>
         <label>Harga</label><br>
 		<input type="text" name="harga_barang" class="form-control" placeholder="isi harga barang...">
@@ -68,4 +68,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content').summernote({
+      height: "300px",
+      styleWithSpan: false
+    });
+  }); 
+</script>
 @endsection

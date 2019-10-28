@@ -49,7 +49,37 @@ Route::post('/barang/insert','BarangController@insert');
 Route::get('/barang/edit/{id}','BarangController@edit');
 Route::put('/barang/update/{id}', 'BarangController@update');
 ROUTE::DELETE('/barang/hapus/{id}', 'BarangController@delete');
+Route::get('/barang/show/{id}','BarangController@show');
 //route report
 Route::get('/report','ReportController@index');
 Route::get('/report/json','ReportController@json');
 Route::get('/report/cetak_pdf', 'ReportController@cetak_pdf');
+//route transaksi
+Route::get('/transaksi','TransaksiController@index');
+Route::get('/transaksi/{id}','TransaksiController@merkAjax');
+// Route::get('/transaksi/{id}','TransaksiController@search');
+
+//route belajar crud with pop up(modal)
+Route::resource('blog','BlogController');
+Route::post('/blog/store','BlogController@store');
+Route::put('/blog/edit/{id}', 'BlogController@edit');
+Route::get('/trash', 'BlogController@trash');
+Route::get('/trash/kembalikan/{id}', 'BlogController@kembalikan');
+Route::get('/trash/kembalikansemua', 'BlogController@kembalikansemua');
+ROUTE::DELETE('/trash/hapus_permanen/{id}', 'BlogController@hapus_permanen');
+Route::get('/trash/hapus_permanen_semua', 'BlogController@hapus_permanen_semua');
+
+//route belajar chained dropdown 
+Route::get('/dropdownchain','DropdownController@index');
+Route::get('/dropdownchain/getkabupaten/{param}','DropdownController@getkabupaten');
+Route::get('/dropdownchain/getkecamatan/{param}','DropdownController@getkecamatan');
+Route::get('/dropdownchain/getkelurahan/{param}','DropdownController@getkelurahan');
+
+//belajar relasi one to one
+Route::get('/pengguna', 'PenggunaController@index');
+//belajar relasi one to many
+Route::get('/article', 'WebController@index');
+//belajar relasi many to many
+Route::get('/anggota', 'HadiahController@index');
+Route::get('/anggota/json', 'HadiahController@json');
+Route::get('/anggota/export_excel', 'HadiahController@export_excel');

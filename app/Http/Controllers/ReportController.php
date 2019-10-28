@@ -28,6 +28,10 @@ class ReportController extends Controller
       public function json(){
         $v_tbbarang = V_tbbarang::all();
         return Datatables::of($v_tbbarang)
+         ->addColumn('action', function ($v_tbbarang) {
+                return '<span>'.$v_tbbarang->deskripsi_barang.'</span>';
+            }
+        )
         ->addIndexColumn()
         ->make(true);
     }

@@ -27,10 +27,7 @@ class BarangController extends Controller
         $barang = Barang::all();
         return Datatables::of($barang)
          ->addColumn('action', function ($barang) {
-                return '<center>
-            <a href="/barang/edit/'.$barang->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-            <button data-id="'.$barang->id.'" class="btn btn-xs btn-danger" id="hapusbrg"><i class="glyphicon glyphicon-trash"></i> Hapus</button>
-                </center>';
+                return '<span>'.$barang->deskripsi_barang.'</span>';
             }
         )
         ->addIndexColumn()
@@ -38,9 +35,14 @@ class BarangController extends Controller
     }
 
      public function index(){
-		$barang = Barang::all();
-    	return view('barang',['barang' => $barang]);
+        $barang = Barang::all();
+         return view('barang',['barang' => $barang]);
     }
+
+    //  public function show($id){
+    
+    //      return view('show',['barang' => Barang::findOrFail($id)]);
+    // }
 
     public function delete($id) {
         $barang = Barang::find($id);

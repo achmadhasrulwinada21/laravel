@@ -48,9 +48,9 @@
         </div>
     </div>
 </div>
-
+  
  <!--modal -->
-            <!--endmodal -->
+             <!--endmodal -->
 
     </section>
    <!-- /.content -->
@@ -65,7 +65,7 @@
                   { data: 'DT_RowIndex', name:'DT_RowIndex'},
                   { data: 'kd_barang', name: 'kd_barang' },
                   { data: 'nm_barang', name: 'nm_barang' },
-                  { data: 'deskripsi_barang', name: 'deskripsi_barang' },
+                  {data: 'action', name: 'upload', orderable: false, searchable: false},
                   { data: 'harga_barang', render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' ) },
                     
                   { data: 'upload_barang',
@@ -76,8 +76,12 @@
                   return '<center><img src="http://localhost:8000/data_file/produk/'+data+'" style="height:100px;width:100px;"/></center';
                      }
                    },
-                {data: 'action', name: 'upload', orderable: false, searchable: false}
-                ]
+                    { data: 'id', 
+                   "render": function ( data, type, row, meta ) {
+                            return '<a href="/barang/edit/'+data+'" title="edit" class="btn btn-xs btn-warning" style="margin-bottom:4px;margin-right:2px;"><i class="fa fa-edit"></i></a><a data-id="'+data+'" class="btn btn-xs btn-danger" style="margin-bottom:4px;" title="hapus" id="hapusbrg"><i class="fa fa-trash"></i></a>';
+                       }
+                }
+              ]
           });
 
 
