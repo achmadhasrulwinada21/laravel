@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content21')
+<link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}">
 
 <!--header-->
 <header>
@@ -43,16 +44,21 @@
 
 <!--content-->
  <div class=”container” style="margin-top:30px;margin-bottom:30px"> 
-    <div class="row" style="margin-left:70px">
-        <div class="col-md-4">
-          <label>Kategori Barang</label><br>
-                     <select name="kd_kategori" id="merks" class="form-control @error('kd_kategori') is-invalid @enderror" >
-                    <option value="0" selected disabled>- Pilih Kategori Barang -</option>
+    <div class="row" style="margin-left:35%">
+        <div class="col-md-6">
+           <fieldset class="border p-2">
+          <legend class="w-auto"><label>Kategori Barang</label></legend>
+              <div class="input-group mb-3">
+                     <select name="kd_kategori" id="merks" class="custom-select">
+                    <option value="0" selected disabled>Choose a Category...</option>
                     <option value="0">semua</option>
                     @foreach ($kategori as $pemilik)
                         <option value="{{ $pemilik->kd_kategori }}">{{ ($pemilik->nm_kategori) }}</option>
-                    @endforeach
-                    </select>
+                    @endforeach 
+                   </select> <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                  </div>
+                  </div></fieldset>
         </div> 
     </div><hr>
      {{-- <div class="col-md-4">
@@ -66,17 +72,18 @@
          </div> --}}
         
     <br><br>
-       <div class="row">
+  <div class="row"  id="motors">
 @foreach($transaksijual as $tj)
     <div class="col-4">
-<table class="table table-striped table-list" width="100%" id="motors">
+  <div class="table-responsive">
+<table class="table table-striped table-list" width="100%">
   <thead>
-  <tr><th width="20%"></th><th width="20%"></th> <th width="4%"></th> <th width="56%"><center style="margin-bottom:10px"><img src="{{ URL::to('/data_file/produk/'.$tj->upload_barang.'')}}" style="height:200px;width:200px;"></center></th></tr>
-    <tr><th width="20%"></th><th width="20%">Barang</th> <th width="4%">:</th> <th width="56%">{{ $tj->nm_barang }}</th></tr>
-    <tr><th width="20%"></th><th>Harga</th>  <th width="4%">:</th> <th width="56%">{{ $tj->harga_barang }}</th></tr>
-    <tr><th width="20%"></th><th>Keterangan</th> <th width="4%">:</th> <th width="56%">{!! $tj->deskripsi_barang !!}</th></tr>
+  <tr><th colspan='4' width="56%"><center style="margin-bottom:10px"><img src="{{ URL::to('/data_file/produk/'.$tj->upload_barang.'')}}" style="height:200px;width:200px;"></center></th></tr>
+    <tr><th>{{ $tj->nm_barang }}</th></tr>
+    <tr><th>Rp. {{ number_format($tj->harga_barang) }},-</th></tr>
+    <tr><th>{!! $tj->deskripsi_barang !!}</th></tr>
   </thead>
-</table>
+</table></div>
    </div>
      @endforeach
   </div>
@@ -87,21 +94,22 @@
   <p><b>Footer</b></p>
 </div>
 
-
-
+<script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            // $("#merks").chosen({width: '50%'});
             $('#merks').on('change', function(e){
                 var id = e.target.value;
                 $.get('{{ url('transaksi')}}/'+id, function(data){
                     console.log(id);
                     console.log(data);
                     $('#motors').empty();
-                    $.each(data, function(index, element){
-                        $('#motors').append("<tr><th>"+element.nm_barang+"</th><th>"+element.harga_barang+"</th>"+
-                        "<th>"+element.deskripsi_barang+"</th></tr>");
+                     $('#motors').slideUp(500)
+                                 .slideDown(500);
+                       $.each(data, function(index, element){
+                        $('#motors').append("<div class='col-4'> <div class='table-responsive'><table class='table table-striped table-list' width='100%'><thead><tr><th colspan='4'><center><img src='http://localhost:8000/data_file/produk/"+element.upload_barang+"' style='height:200px;width:200px;'/></center></th></tr><tr><th>"+element.nm_barang+"</th></tr><tr><th>Rp. "+element.harga_barang.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')+",-</th></tr>"+"<tr><th>"+element.deskripsi_barang+"</th></tr></thead></table></div></div>");
                     });
-                });
+                  });
             });
         });
     </script>
