@@ -13,6 +13,7 @@
                         <th>No</th>
                         <th>Nama Pengguna</th>
                         <th>Hadiah</th>
+                        <th>Jumlah Hadiah</th>
                     </tr> 
                   </thead>
                   
@@ -30,7 +31,8 @@
               columns: [
                   { data: 'DT_RowIndex', name:'DT_RowIndex'},
                   { data: 'nama', name: 'nama' },
-                  { data: 'hadiah_id', name: 'hadiah_id' }
+                  { data: 'hadiah', name: 'hadiah' },
+                   { data: 'total', name: 'total' }
                   ]
           });
       });

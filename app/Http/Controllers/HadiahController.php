@@ -32,8 +32,11 @@ class HadiahController extends Controller
      public function json(){
         // $anggota = Anggota::all();
         $anggota = DB::table('anggota')
-            ->leftJoin('anggota_hadiah', 'anggota.id', '=', 'anggota_hadiah.anggota_id')
-            ->orderBy('nama', 'desc')
+            ->select(DB::raw('count(*) as total,anggota.id,anggota.nama,group_concat( hadiah.nama_hadiah SEPARATOR " | ") AS hadiah'))
+            ->Join('anggota_hadiah', 'anggota.id', '=', 'anggota_hadiah.anggota_id')
+            ->Join('hadiah', 'hadiah.id', '=', 'anggota_hadiah.hadiah_id')
+            ->orderBy('anggota.nama', 'asc')
+            ->groupBy('anggota.id','anggota.nama')
             ->get();
         return Datatables::of($anggota)
         // ->addColumn('action', function ($anggota) {
@@ -48,7 +51,13 @@ class HadiahController extends Controller
     }
 
      public function index(){
-     	$anggota = Anggota::get();
+     	 $anggota = DB::table('anggota')
+           ->select(DB::raw('count(*) as total,anggota.id,anggota.nama,group_concat(hadiah.nama_hadiah SEPARATOR " | ") AS hadiah'))
+            ->Join('anggota_hadiah', 'anggota.id', '=', 'anggota_hadiah.anggota_id')
+            ->Join('hadiah', 'hadiah.id', '=', 'anggota_hadiah.hadiah_id')
+            ->orderBy('anggota.nama', 'asc')
+            ->groupBy('anggota.id','anggota.nama')
+            ->get();
      	return view('anggota_hadiah2', ['anggota' => $anggota]);
     }
 

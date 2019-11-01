@@ -25,6 +25,7 @@ Route::post('/mahasiswa/insert','MahasiswaController@insert');
 Route::get('/mahasiswa/edit/{id}','MahasiswaController@edit');
 Route::put('/mahasiswa/update/{id}', 'MahasiswaController@update');
 Route::get('/mahasiswa/hapus/{id}', 'MahasiswaController@delete');
+Route::post('/mahasiswa/import_excel', 'MahasiswaController@import_excel');
 //route CRUD Manajemen user
 Route::get('/manajemenuser','ManajemenuserController@index');
 Route::get('/manajemenuser/json','ManajemenuserController@json');
