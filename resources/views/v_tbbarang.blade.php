@@ -74,7 +74,7 @@
                   'orderable':false,
                   'render': function (data, type, full, meta)
                      {
-                  return '<center><img src="http://localhost:8000/data_file/produk/'+data+'" style="height:100px;width:100px;"/></center';
+                  return '<center><img src="http://laravel.local/data_file/produk/'+data+'" style="height:100px;width:100px;"/></center';
                      }
                    }
                 ]
