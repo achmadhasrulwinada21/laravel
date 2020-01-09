@@ -84,3 +84,6 @@ Route::get('/article', 'WebController@index');
 Route::get('/anggota', 'HadiahController@index');
 Route::get('/anggota/json', 'HadiahController@json');
 Route::get('/anggota/export_excel', 'HadiahController@export_excel');
+
+//belajar js
+Route::get('/ini','JsController@index');
